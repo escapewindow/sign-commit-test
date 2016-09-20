@@ -13,7 +13,7 @@ import sys
 VALID_KEY_IDS = {
     "FC829B7FFAA9AC38": "asasaki@mozilla.com",
 }
-REGEX = re.compile(' using RSA key( ID)? (?P<keyid>[A-F0-9]*)$')
+REGEX = re.compile(' using [A-Z]+ key( ID)? (?P<keyid>[A-F0-9]*)$')
 log = logging.getLogger(__name__)
 
 
@@ -38,8 +38,6 @@ def main(name=None):
     if parts[1] == 'gpg':
         for line in lines:
             line.replace("'", "")
-            if not line.startswith('gpg:'):
-                continue
             m = REGEX.search(line)
             if m:
                 keyid = m.groupdict()['keyid']
