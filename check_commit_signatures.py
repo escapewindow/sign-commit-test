@@ -38,6 +38,7 @@ def main(name=None):
     if parts[1] == 'gpg':
         for line in lines:
             line.replace("'", "")
+            log.debug(line)
             m = REGEX.search(line)
             if m:
                 keyid = m.groupdict()['keyid']
