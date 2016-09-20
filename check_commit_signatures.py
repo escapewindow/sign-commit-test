@@ -19,6 +19,7 @@ def main(name=None):
     ).decode('utf-8')
     message = "Unknown exception"
     for line in output.splitlines():
+        print(line)
         sha, keyid = line.replace("'", "").split(':')
         if not keyid:
             message = "Latest commit {} is not signed!\nCommits must be gpg signed: `git commit -S[<keyid>]`".format(sha)
