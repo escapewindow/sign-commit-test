@@ -31,7 +31,7 @@ def main(name=None):
     lines = output.splitlines()
     log.debug(pprint.pformat(lines))
     keyid = None
-    line = lines.pop(0)
+    line = lines[0]
     # the first line should look like SHA:gpg:...
     parts = line.replace("'", "").split(':')
     sha = parts[0]
