@@ -13,7 +13,7 @@ import sys
 VALID_KEY_IDS = {
     "FC829B7FFAA9AC38": "asasaki@mozilla.com",
 }
-REGEX = re.compile('^gpg: +using \S+ key (?P<keyid>[A-F0-9]*)$')
+REGEX = re.compile(' using RSA key( ID)? (?P<keyid>[A-F0-9]*)$')
 log = logging.getLogger(__name__)
 
 
