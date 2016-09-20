@@ -5,6 +5,7 @@ As currently written, the latest non-merge-commit must be signed.  If you sign
 a commit, you're signing off on all changes since the last signed commit.
 """
 import logging
+import os
 import re
 import subprocess
 import sys
@@ -20,8 +21,9 @@ def main(name=None):
     if name not in (None, "__main__"):
         return
     # logging
-    log.setLevel(logging.DEBUG)
-    log.addHandler(logging.StreamHandler())
+    if os.environ.get('VERBOSE'):
+        log.setLevel(logging.DEBUG)
+        log.addHandler(logging.StreamHandler())
     # get output from `git log`
     output = subprocess.check_output(
         ["git", "log", "--no-merges", "--format='%H:%GG'"]
