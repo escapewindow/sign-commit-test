@@ -5,7 +5,6 @@ As currently written, the latest non-merge-commit must be signed.  If you sign
 a commit, you're signing off on all changes since the last signed commit.
 """
 import logging
-import pprint
 import re
 import subprocess
 import sys
@@ -29,7 +28,6 @@ def main(name=None):
     ).decode('utf-8')
     message = "Unknown exception"
     lines = output.splitlines()
-    log.debug(pprint.pformat(lines))
     keyid = None
     line = lines[0]
     # the first line should look like SHA:gpg:...
