@@ -3,6 +3,6 @@ python:
   - 3.5.2
 
 install:
-    - mkdir ~/.gnupg && chmod 700 ~/.gnupg && cp gpg.conf ~/.gnupg/
+    - cp gpg.conf ~/.gnupg/
 script:
     - python check_commit_signatures.py
