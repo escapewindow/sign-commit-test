@@ -20,6 +20,10 @@ log = logging.getLogger(__name__)
 def main(name=None):
     if name not in (None, "__main__"):
         return
+    # logging
+    log.setLevel(logging.DEBUG)
+    log.addHandler(logging.StreamHandler())
+    # get output from `git log`
     output = subprocess.check_output(
         ["git", "log", "--no-merges", "--format='%H:%GG'"]
     ).decode('utf-8')
@@ -28,6 +32,7 @@ def main(name=None):
     log.debug(pprint.pformat(lines))
     keyid = None
     line = lines.pop(0)
+    # the first line should look like SHA:gpg:...
     parts = line.replace("'", "").split(':')
     sha = parts[0]
     if parts[1] == 'gpg':
