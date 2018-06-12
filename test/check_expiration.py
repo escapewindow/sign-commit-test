@@ -14,7 +14,6 @@ from __future__ import print_function
 import arrow
 import fnmatch
 import os
-import requests
 import re
 import subprocess
 import sys
@@ -22,7 +21,7 @@ import zipfile
 
 WARNING_THRESHOLD = 60
 ERROR_THRESHOLD = 30
-PUPPET_URL = "https://hg.mozilla.org/build/puppet/archive/production.zip/modules/scriptworker/files/git_pubkeys/"
+PUPPET_REPO = "https://github.com/mozilla-releng/build-puppet"
 EXPIRE_REGEX = re.compile('expires: (\d{4}-\d{2}-\d{2})')
 GPG = 'gpg2'
 
@@ -45,14 +44,9 @@ def find_pubkeys(path):
 
 
 def download_extract_puppet_pubkeys():
-    r = requests.get(PUPPET_URL, stream=True)
-    r.raise_for_status()
-    with open('puppet.zip', 'wb') as fh:
-        for chunk in r.iter_content(chunk_size=128):
-            fh.write(chunk)
-    r.close()
-    z = zipfile.ZipFile('puppet.zip')
-    z.extractall()
+    subprocess.check_call([
+        'git', 'clone', PUPPET_REPO, 'build-puppet'
+    ])
 
 
 def check_expiration(path):
