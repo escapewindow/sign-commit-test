@@ -12,7 +12,7 @@ tasks:
           - master
     payload:
       maxRunTime: 3600
-      image: python
+      image: escapewindow/cot-gpg-keys
       command:
         - /bin/bash
         - '--login'
