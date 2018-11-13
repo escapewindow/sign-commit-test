@@ -4,18 +4,14 @@ To create new keys for Windows worker types:
 
 - edit generate_keys.sh (to add or remove worker types)
 - run the key generation script
-- create or edit secrets at: https://tools.taskcluster.net/secrets/.
-  for each worker type with a new key:
   - export the private key with a command like:
     ```bash
-    gpg2 --no-default-keyring --keyring gecko-b-win.gpg --armor --export-secret-key noreply-<worker type>@mozilla.com
+    gpg2 --no-default-keyring --keyring $key_valid_start_$key_valid_end_gecko-b-win.gpg --armor --export-secret-key noreply-$worker_type@mozilla.com
     ```
-  - create or edit the secret named: ```repo:github.com/mozilla-releng/OpenCloudConfig:cot-<worker type>```.
-  - the contents of the secret should be in json format as below (replace newlines with "\n"):
-  
-    ```json
-    {
-      "cot_private_key": "-----BEGIN PGP PRIVATE KEY BLOCK-----\nVersion: GnuPG v2\n\nsecret removed\n-----END PGP PRIVATE KEY BLOCK-----"
-    }
+    eg:
+    ```
+    gpg2 --no-default-keyring --keyring 2018-11-13_2019-05-13_gecko-b-win.gpg --armor --export-secret-key noreply-gecko-3-b-win2012@mozilla.com
     ```
 - commit and push new public keys to this repo
+- allow a few hours for the public keys to propagate
+- manually add the private key to the worker type during the ami generation step in OpenCloudConfig by connecting to the ami generation instance over SSH or RDP and writing the key to C:\generic-worker\cot.key
