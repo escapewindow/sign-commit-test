@@ -1,0 +1,12 @@
+Key-Type: eddsa
+Key-Curve: Ed25519
+Key-Usage: sign
+Subkey-Type: ecdh
+Subkey-Curve: Curve25519
+Subkey-Usage: encrypt
+Name-Real: gecko-3-b-win2012
+Name-Email: noreply-gecko-3-b-win2012@mozilla.com
+Creation-Date: 2019-02-08
+Expire-Date: 2019-08-08
+%no-protection
+%commit

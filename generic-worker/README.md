@@ -2,7 +2,7 @@ Public GPG keys for generic-worker go here.
 
 To create new keys for Windows worker types:
 
-- edit generate_keys.sh (to add or remove worker types)
+- edit generate_keys.sh to add or remove worker types or to change the key type and curve algorithm
 - run the key generation script
   - export the private key with a command like:
     ```bash
