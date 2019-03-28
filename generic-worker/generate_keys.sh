@@ -19,12 +19,15 @@ mkdir -p ${folder}
 
 # create the key genertion options file (.in)
 cat >${folder}/.in<<EOF
-Key-Type: RSA
-Key-Length: 4096
-Subkey-Type: RSA
-Subkey-Length: 4096
+Key-Type: eddsa
+Key-Curve: Ed25519
+Key-Usage: sign
+Subkey-Type: ecdh
+Subkey-Curve: Curve25519
+Subkey-Usage: encrypt
 Name-Real: ${workertype}
 Name-Email: noreply-${workertype}@mozilla.com
+Creation-Date: ${key_valid_start}
 Expire-Date: ${key_valid_end}
 %no-protection
 %commit
